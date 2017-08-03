@@ -83,7 +83,7 @@ var ShowCtrl = function($filter, $scope, $http, User, $routeParams, Core) {
 
 	var getPrices = function(category) {
 		Core.get(
-			"/admin/shows/" + $scope.id + "/categories/" + category.id
+			"/admin/categories/" + category.id
 				+ "/prices").then(function(response) {
 			category.prices = [];
 
@@ -144,13 +144,13 @@ var ShowCtrl = function($filter, $scope, $http, User, $routeParams, Core) {
 
 	$scope.setPrice = function(category_id, rate_id, price) {
 		if(price === "") {
-			return Core.delete("/admin/shows/" + $scope.id + "/categories/" + category_id
+			return Core.delete("/admin/categories/" + category_id
 			+ "/prices/" + rate_id);
 		} else {
 			var data = {
 				price : parseInt(price)
 			};
-			return Core.put("/admin/shows/" + $scope.id + "/categories/" + category_id
+			return Core.put("/admin/categories/" + category_id
 				+ "/prices/" + rate_id, data);
 		}
 	};
