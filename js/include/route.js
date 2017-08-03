@@ -14,7 +14,7 @@ module.config([ "$routeProvider", function($routeProvider) {
 		templateUrl : "/pages/shows/shows.html",
 		controller : "ShowsCtrl"
 	});
-	$routeProvider.when("/packages/:id", {
+	$routeProvider.when("/shows/:id", {
 		templateUrl : "/pages/shows/show.html",
 		controller : "ShowCtrl"
 	});
