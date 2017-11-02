@@ -37,8 +37,7 @@
 					<i class="fa fa-plus fa-lg clickable right"
 						ng-click="addPerf(date)"></i> {{date | date : 'EEEE d MMMM yyyy'}}
 				</div>
-				<div class="list-group-item" ng-repeat="performance in performances">{{performance.start
-					| timestamp | date : 'HH:mm'}}</div>
+				<div class="list-group-item" ng-repeat="performance in performances">{{performance.start | date : 'HH:mm'}}</div>
 			</div>
 			<form ng-submit="addDate()" class="input-group">
 				<input required type="text" ng-model="newDate" class="form-control"
