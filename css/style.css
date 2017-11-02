@@ -6,3 +6,10 @@
 	float: right;
 	margin-top: 5px;
 }
+.space-right{
+margin-right: 10px
+}
+
+.form-inline .form-control{
+	max-width: 80px!important;
+}

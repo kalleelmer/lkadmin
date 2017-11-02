@@ -24,7 +24,7 @@ var ShowCtrl = function($filter, $scope, $http, User, $routeParams, Core) {
 			.then(function(response) {
 				$scope.show.dates[date].push(response.data);
 			}, function(response) {
-				alert("Kunde inte lägga till föreställnig: ", response.status);
+				alert("Kunde inte lägga till föreställningen: ", response.status);
 			});
 	}
 
@@ -37,7 +37,7 @@ var ShowCtrl = function($filter, $scope, $http, User, $routeParams, Core) {
 		$scope.show = response.data;
 		ctrl.loadShowData();
 	}, function(response) {
-		alert("Kunde inte hämta nöje: " + response.status);
+		alert("Kunde inte hämta nöjet: " + response.status);
 	});
 
 	ctrl.loadShowData = function() {
@@ -52,7 +52,7 @@ var ShowCtrl = function($filter, $scope, $http, User, $routeParams, Core) {
 				}
 				$scope.show.dates = dates;
 			}, function(response) {
-				alert("Kunde inte hämta föreställningar: " + response.status);
+				alert("Kunde inte hämta föreställningarna: " + response.status);
 			});
 
 		Core.get("/admin/shows/" + $scope.id + "/rates").then(
@@ -71,12 +71,12 @@ var ShowCtrl = function($filter, $scope, $http, User, $routeParams, Core) {
 
 						},
 						function(response) {
-							alert("Kunde inte hämta platstyper: "
+							alert("Kunde inte hämta platstyperna: "
 								+ response.status);
 						})
 
 			}, function(response) {
-				alert("Kunde inte hämta biljettyper: " + response.status);
+				alert("Kunde inte hämta biljettyperna: " + response.status);
 			});
 
 	}
@@ -154,7 +154,16 @@ var ShowCtrl = function($filter, $scope, $http, User, $routeParams, Core) {
 				+ "/prices/" + rate_id, data);
 		}
 	};
-
+	$scope.setTicketCount = function(category_id, ticketCount) {
+		if(ticketCount === "") {
+			return Core.delete("/admin/categories/" + category_id
+			+ "/ticketCount/");
+		} else {
+			var data = parseInt(ticketCount);
+			return Core.put("/admin/categories/" + category_id
+				+ "/ticketCount/", data);
+		}
+	};
 };
 
 module.controller("ShowCtrl", ShowCtrl);

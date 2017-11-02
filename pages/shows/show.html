@@ -10,17 +10,21 @@
 							ng-click="addRate()" title="Lägg till biljettyp"></i> <i
 							class="fa fa-plus fa-lg clickable right" ng-click="addCategory()"
 							title="Lägg till platstyp"></i></th>
-						<th ng-repeat="category in show.categories">{{category.name}}</th>
+						<th ng-repeat="category in show.categories">
+							<span class="margin-right">{{category.name}}</span>
+							<div><span editable-text="category.ticketCount"
+							onbeforesave="setTicketCount(category.id, $data)">Antal platser: {{category.ticketCount}}</span></div>
+						</th>
 					</tr>
 				</thead>
 				<tbody>
-
 					<tr ng-repeat="(i, rate) in show.rates">
 						<th scope="row">{{rate.name}}</th>
-						<td ng-repeat="category in show.categories"><span
-							editable-text="category.prices[rate.id].price"
-							onbeforesave="setPrice(category.id, rate.id, $data)">{{category.prices[rate.id].price
-								|| "X"}}</span></td>
+						<td ng-repeat="category in show.categories">
+							<span editable-text="category.prices[rate.id].price"
+							onbeforesave="setPrice(category.id, rate.id, $data)">Pris: {{category.prices[rate.id].price
+								|| "X"}}</span></th>
+						</td>
 					</tr>
 				</tbody>
 			</table>
@@ -45,5 +49,4 @@
 			</form>
 		</div>
 	</div>
-
 </div>
