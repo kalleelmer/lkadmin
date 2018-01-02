@@ -1,0 +1,25 @@
+<div class="container">
+	<h1>{{performance.show.name}} {{performance.start | date :
+		'yyyy-MM-dd HH:ss'}}</h1>
+	<div class="row">
+		<div class="col-md-8">
+			<h2>Platser</h2>
+			<table class="table table-bordered">
+				<tr>
+					<th>ID</th>
+					<th>Profil/Kvot</th>
+					<th>Status</th>
+				</tr>
+				<tr ng-repeat="seat in performance.seats">
+					<td>{{seat.id}}</td>
+					<td>{{seat.profile_name}}</td>
+					<td><div ng-show="seat.active_ticket_id == 0">Ledig</div>
+						<div ng-show="seat.active_ticket_id != 0">Reserverad</div></td>
+				</tr>
+			</table>
+		</div>
+		<div class="col-md-4">
+			<h2>Siffror</h2>
+		</div>
+	</div>
+</div>

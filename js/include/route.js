@@ -8,7 +8,7 @@ module.config([ "$routeProvider", function($routeProvider) {
 	console.log("Route: " + $routeProvider);
 	$routeProvider.when("/", {
 		templateUrl : "/pages/start/start.html",
-		controller: "StartCtrl"
+		controller : "StartCtrl"
 	});
 	$routeProvider.when("/shows", {
 		templateUrl : "/pages/shows/shows.html",
@@ -17,6 +17,14 @@ module.config([ "$routeProvider", function($routeProvider) {
 	$routeProvider.when("/shows/:id", {
 		templateUrl : "/pages/shows/show.html",
 		controller : "ShowCtrl"
+	});
+	$routeProvider.when("/performances", {
+		templateUrl : "/pages/performances/performances.html",
+		controller : "PerformancesCtrl"
+	});
+	$routeProvider.when("/performances/:id", {
+		templateUrl : "/pages/performances/performance.html",
+		controller : "PerformanceCtrl"
 	});
 	$routeProvider.when("/users", {
 		templateUrl : "/pages/users/users.html",

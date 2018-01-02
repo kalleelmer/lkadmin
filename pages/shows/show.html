@@ -10,20 +10,23 @@
 							ng-click="addRate()" title="Lägg till biljettyp"></i> <i
 							class="fa fa-plus fa-lg clickable right" ng-click="addCategory()"
 							title="Lägg till platstyp"></i></th>
-						<th ng-repeat="category in show.categories">
-							<span class="margin-right">{{category.name}}</span>
-							<div><span editable-text="category.ticketCount"
-							onbeforesave="setTicketCount(category.id, $data)">Antal platser: {{category.ticketCount}}</span></div>
-						</th>
+						<th ng-repeat="category in show.categories"><span
+							class="margin-right">{{category.name}}</span>
+							<div>
+								<span editable-text="category.ticketCount"
+									onbeforesave="setTicketCount(category.id, $data)">Antal
+									platser: {{category.ticketCount}}</span>
+							</div></th>
 					</tr>
 				</thead>
 				<tbody>
 					<tr ng-repeat="(i, rate) in show.rates">
 						<th scope="row">{{rate.name}}</th>
-						<td ng-repeat="category in show.categories">
-							<span editable-text="category.prices[rate.id].price"
-							onbeforesave="setPrice(category.id, rate.id, $data)">Pris: {{category.prices[rate.id].price
-								|| "X"}}</span></th>
+						<td ng-repeat="category in show.categories"><span
+							editable-text="category.prices[rate.id].price"
+							onbeforesave="setPrice(category.id, rate.id, $data)">Pris:
+								{{category.prices[rate.id].price || "X"}}</span>
+						</th>
 						</td>
 					</tr>
 				</tbody>
@@ -37,7 +40,9 @@
 					<i class="fa fa-plus fa-lg clickable right"
 						ng-click="addPerf(date)"></i> {{date | date : 'EEEE d MMMM yyyy'}}
 				</div>
-				<div class="list-group-item" ng-repeat="performance in performances">{{performance.start | date : 'HH:mm'}}</div>
+				<a href="#/performances/{{performance.id}}" class="list-group-item"
+					ng-repeat="performance in performances">{{performance.start |
+					date : 'HH:mm'}}</a>
 			</div>
 			<form ng-submit="addDate()" class="input-group">
 				<input required type="text" ng-model="newDate" class="form-control"
