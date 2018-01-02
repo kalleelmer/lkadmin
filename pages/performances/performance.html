@@ -27,9 +27,10 @@
 					<th>Platser</th>
 				</tr>
 				<tr ng-repeat="p in profiles">
-					<td>{{p.name}}</td>
-					<td>{{stats[p.id].available}}</td>
-					<td>{{stats[p.id].total}}</td>
+					<td><span ng-show="p.working"><i
+							class="fa fa-refresh fa-spin"></i> </span>{{p.name}}</td>
+					<td>{{p.available}}</td>
+					<td ng-click="changeQuota(p)">{{p.total}}</td>
 				</tr>
 				<tr>
 					<td><i>Totalt</i></td>
