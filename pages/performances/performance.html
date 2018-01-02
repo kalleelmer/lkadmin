@@ -20,6 +20,18 @@
 		</div>
 		<div class="col-md-4">
 			<h2>Siffror</h2>
+			<table class="table table-bordered">
+				<tr>
+					<th>Kvot</th>
+					<th>Ledig</th>
+					<th>Platser</th>
+				</tr>
+				<tr ng-repeat="(k, p) in stats">
+					<td><span ng-show="k!='null'">{{k}}</span>&nbsp;</td>
+					<td>{{p.available}}</td>
+					<td>{{p.available + p.reserved}}</td>
+				</tr>
+			</table>
 		</div>
 	</div>
 </div>
