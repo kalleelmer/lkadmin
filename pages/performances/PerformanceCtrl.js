@@ -21,7 +21,10 @@ var PerformanceCtrl = function($filter, $scope, $http, User, $routeParams, Core)
 		var req = Core.get("/admin/performances/" + $routeParams.id
 			+ "/availability");
 		req.then(function(response) {
-			$scope.stats = response.data;
+			$scope.noprofile = response.data["0"];
+			if(!$scope.noprofile) {
+				$scope.noprofile = {"total":0, "available":0};
+			}
 			for (var i = 0; i < $scope.profiles.length; i++) {
 				var p = $scope.profiles[i];
 				var stats = response.data[p.id];
@@ -84,6 +87,8 @@ var PerformanceCtrl = function($filter, $scope, $http, User, $routeParams, Core)
 				seat.profile_name = profile.name;
 				profile.total++;
 				profile.available++;
+				$scope.noprofile.total--;
+				$scope.noprofile.available--;
 				ctrl.addTickets(profile, index + 1, limit - 1);
 			}, function(response) {
 				alert("Tekniskt fel: " + response.status);
@@ -109,6 +114,8 @@ var PerformanceCtrl = function($filter, $scope, $http, User, $routeParams, Core)
 			function(response) {
 				seat.profile_id = 0;
 				seat.profile_name = null;
+				$scope.noprofile.total++;
+				$scope.noprofile.available++;
 				profile.total--;
 				profile.available--;
 				ctrl.removeTickets(profile, index + 1, limit - 1);
