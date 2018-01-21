@@ -2,12 +2,33 @@
 	<h1>Karnevalister</h1>
 	<div class="list-group">
 		<div class="list-group-item active">ID | Namn | E-post</div>
-		<a href="#/users/{{user.id}}" class="list-group-item"
-			ng-repeat="user in users">{{user.id}} | {{user.name}} |
+		<a href="#/users/{{user.id}}" class="list-group-item" ng-repeat="user in users">{{user.id}} | {{user.name}} |
 			{{user.email}} </a>
 	</div>
 	<div>
-		<button type="button" class="btn btn-primary">Lägg till
+		<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">Lägg till
 			karnevalist</button>
 	</div>
+	<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLabel">Ny karnevalist</h5>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+	          <span aria-hidden="true">&times;</span>
+	        </button>
+				</div>
+				<div class="modal-body">
+					<label for="exampleInputEmail1">Email address</label>
+					<input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" ng-model="newuser.email"> </input>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+					<button type="button" class="btn btn-primary" data-dismiss="modal" ng-click="createNewUser()">Save changes</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
 </div>
