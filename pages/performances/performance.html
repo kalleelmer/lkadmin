@@ -8,11 +8,13 @@
 				<tr>
 					<th>ID</th>
 					<th>Profil/Kvot</th>
+					<th>Kategori</th>
 					<th>Status</th>
 				</tr>
 				<tr ng-repeat="seat in performance.seats">
 					<td>{{seat.id}}</td>
 					<td>{{seat.profile_name}}</td>
+					<td>{{seat.category_name}}</td>
 					<td><div ng-show="seat.active_ticket_id == 0">Ledig</div>
 						<div ng-show="seat.active_ticket_id != 0">Reserverad</div></td>
 				</tr>
