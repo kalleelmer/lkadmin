@@ -107,8 +107,6 @@ var CoreFactory = function($http, $timeout, ENV) {
 			},
 			data : data
 		};
-
-		console.log("Making request to " + req.url);
 		return $http(req);
 	}
 
