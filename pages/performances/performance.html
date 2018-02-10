@@ -1,45 +1,40 @@
 <div class="container">
 	<h1>{{performance.show.name}} {{performance.start | date :
 		'yyyy-MM-dd HH:ss'}}</h1>
-	<div class="row">
-		<div class="col-md-4">
-			<h2>Siffror</h2>
-			<table class="table table-bordered">
-				<tr>
-					<th>Kvot</th>
-					<th>Ledig</th>
-					<th>Platser</th>
-				</tr>
-				<tr ng-repeat="p in profiles">
-					<td><span ng-show="p.working"><i
-							class="fa fa-refresh fa-spin"></i> </span>{{p.name}}</td>
-					<td>{{p.available}}</td>
-					<td ng-click="changeQuota(p)">{{p.total}}</td>
-				</tr>
-				<tr>
-					<td><i>Ingen</i></td>
-					<td><i>{{noprofile.available}}</i></td>
-					<td><i>{{noprofile.total}}</i></td>
-				</tr>
-			</table>
-		</div>
-		<div class="col-md-8">
-			<h2>Platser</h2>
-			<table class="table table-bordered">
-				<tr>
-					<th>ID</th>
-					<th>Profil/Kvot</th>
-					<th>Kategori</th>
-					<th>Status</th>
-				</tr>
-				<tr ng-repeat="seat in performance.seats">
-					<td>{{seat.id}}</td>
-					<td>{{seat.profile_name}}</td>
-					<td>{{seat.category_name}}</td>
-					<td><div ng-show="seat.active_ticket_id == 0">Ledig</div>
-						<div ng-show="seat.active_ticket_id != 0">Reserverad</div></td>
-				</tr>
-			</table>
-		</div>
-	</div>
+	<h2>Siffror</h2>
+	<table class="table table-bordered">
+		<tr>
+			<th>Kvot</th>
+			<th ng-repeat="c in categories">{{c.name}}</th>
+		</tr>
+		<tr ng-repeat="p in profiles">
+			<td><span ng-show="p.working"><i
+					class="fa fa-refresh fa-spin"></i> </span>{{p.name}}</td>
+			<td ng-repeat="c in categories" ng-click="changeQuota(p, c)"
+				class="clickable"><span ng-show="stats[p.id][c.id].total > 0">{{stats[p.id][c.id].available}}
+					/ {{stats[p.id][c.id].total}}</span></td>
+		</tr>
+		<tr>
+			<td><i>Ingen</i></td>
+			<td ng-repeat="c in categories"><i
+				ng-show="stats[0][c.id].total > 0">{{stats[0][c.id].available}}
+					/ {{stats[0][c.id].total}}</i></td>
+		</tr>
+	</table>
+	<h2>Platser</h2>
+	<table class="table table-bordered">
+		<tr>
+			<th>ID</th>
+			<th>Profil/Kvot</th>
+			<th>Kategori</th>
+			<th>Status</th>
+		</tr>
+		<tr ng-repeat="seat in performance.seats">
+			<td>{{seat.id}}</td>
+			<td>{{seat.profile_name}}</td>
+			<td>{{seat.category_name}}</td>
+			<td><div ng-show="seat.active_ticket_id == 0">Ledig</div>
+				<div ng-show="seat.active_ticket_id != 0">Reserverad</div></td>
+		</tr>
+	</table>
 </div>
