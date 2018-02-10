@@ -5,18 +5,19 @@
 	<table class="table table-bordered">
 		<tr>
 			<th>Kvot</th>
-			<th ng-repeat="c in categories">{{c.name}}</th>
+			<th ng-repeat="c in categories" class="center">{{c.name}}</th>
 		</tr>
 		<tr ng-repeat="p in profiles">
 			<td><span ng-show="p.working"><i
 					class="fa fa-refresh fa-spin"></i> </span>{{p.name}}</td>
 			<td ng-repeat="c in categories" ng-click="changeQuota(p, c)"
-				class="clickable"><span ng-show="stats[p.id][c.id].total > 0">{{stats[p.id][c.id].available}}
+				class="clickable center"><span
+				ng-show="stats[p.id][c.id].total > 0">{{stats[p.id][c.id].available}}
 					/ {{stats[p.id][c.id].total}}</span></td>
 		</tr>
 		<tr>
 			<td><i>Ingen</i></td>
-			<td ng-repeat="c in categories"><i
+			<td ng-repeat="c in categories" class="center"><i
 				ng-show="stats[0][c.id].total > 0">{{stats[0][c.id].available}}
 					/ {{stats[0][c.id].total}}</i></td>
 		</tr>
