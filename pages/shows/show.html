@@ -41,8 +41,9 @@
 						ng-click="addPerf(date)"></i> {{date | date : 'EEEE d MMMM yyyy'}}
 				</div>
 				<a href="#/performances/{{performance.id}}" class="list-group-item"
-					ng-repeat="performance in performances">{{performance.start |
-					date : 'HH:mm'}}</a>
+					ng-repeat="performance in performances"><span
+					style="float: right;" ng-show="performance.surcharge != 0">{{performance.surcharge}}
+						kr</span>{{performance.start | date : 'HH:mm'}}</a>
 			</div>
 			<form ng-submit="addDate()" class="input-group">
 				<input required type="text" ng-model="newDate" class="form-control"

@@ -1,6 +1,8 @@
 <div class="container">
 	<h1>{{performance.show.name}} {{performance.start | date :
 		'yyyy-MM-dd HH:ss'}}</h1>
+	<p ng-show="performance.surcharge != 0">Prispålägg:
+		{{performance.surcharge}} kr</p>
 	<h2>Siffror</h2>
 	<table class="table table-bordered">
 		<tr>
