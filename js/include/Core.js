@@ -20,7 +20,7 @@ var CoreFactory = function($http, $timeout, ENV) {
 	Core.LOGIN_REDIRECT = location.protocol + "//" + location.host
 		+ location.pathname;
 	Core.user = null;
-	Core.token = sessionStorage["lkticket.api.token"];
+	Core.token = localStorage["lkticket.api.token"];
 
 	Core.initialize = function() {
 		var state = findGetParameter("state");
@@ -36,7 +36,7 @@ var CoreFactory = function($http, $timeout, ENV) {
 				function(response) {
 					Core.user = response.data.user;
 					Core.token = response.data.token;
-					sessionStorage.setItem("lkticket.api.token", Core.token);
+					localStorage.setItem("lkticket.api.token", Core.token);
 					Core.STATE = "LOGGED_IN";
 					history.pushState(null, "index", "/");
 				}, function(response) {
@@ -59,7 +59,7 @@ var CoreFactory = function($http, $timeout, ENV) {
 				}, function(response) {
 					console.log("Failed to use existing login token");
 					Core.token = null;
-					sessionStorage.setItem("lkticket.api.token", Core.token);
+					localStorage.setItem("lkticket.api.token", Core.token);
 					Core.loginButton();
 				});
 		} else {
@@ -117,7 +117,7 @@ var CoreFactory = function($http, $timeout, ENV) {
 	Core.logout = function() {
 		Core.user = null;
 		Core.token = null;
-		sessionStorage.setItem("lkticket.api.token", Core.token);
+		localStorage.setItem("lkticket.api.token", Core.token);
 		Core.loginButton();
 	}
 
