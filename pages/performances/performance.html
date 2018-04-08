@@ -24,6 +24,8 @@
 					/ {{stats[0][c.id].total}}</i></td>
 		</tr>
 	</table>
+</div>
+<div class="container" ng-init="showSeatsLimit = 10">
 	<h2>Platser</h2>
 	<table class="table table-bordered">
 		<tr>
@@ -32,7 +34,7 @@
 			<th>Kategori</th>
 			<th>Status</th>
 		</tr>
-		<tr ng-repeat="seat in performance.seats">
+		<tr ng-repeat="seat in performance.seats | limitTo: showSeatsLimit">
 			<td>{{seat.id}}</td>
 			<td>{{seat.profile_name}}</td>
 			<td>{{seat.category_name}}</td>
@@ -40,4 +42,8 @@
 				<div ng-show="seat.active_ticket_id != 0">Reserverad</div></td>
 		</tr>
 	</table>
+	<div style="text-align: center;">
+		<span class="clickable btn btn-default"
+			ng-click="showSeatsLimit = showSeatsLimit + 100">Visa fler</span>
+	</div>
 </div>
