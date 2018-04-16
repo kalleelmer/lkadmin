@@ -1,10 +1,18 @@
 <div class="container item-page">
 	<h1>{{user.name || user.email}}</h1>
-	<!-- TODO
-	Visa/ändra namn
-	Visa/ändra kategori
-	Visa/ändra behörighet
-	Visa aktivitet?
-	-->
-
+	<div class="list-group">
+		<div class="list-group-item active row">
+			<div class="col-xs-10">Profiler</div>
+			<div class="col-xs-2" style="text-align: right;">
+				<i class="fa fa-plus clickable" ng-click="addProfile(user)"></i>
+			</div>
+		</div>
+		<div class="list-group-item row" ng-repeat="profile in user.profiles">
+			<div class="col-xs-10">{{profile.name}}</div>
+			<div class="col-xs-2" style="text-align: right;" ng-show="profile.id != 1">
+				<i class="fa fa-remove clickable"
+					ng-click="removeProfile(user, $index)"></i>
+			</div>
+		</div>
+	</div>
 </div>
