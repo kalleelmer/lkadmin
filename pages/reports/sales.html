@@ -14,15 +14,15 @@
 			<tr ng-repeat="e in report.entries">
 				<td>{{e.day}}</td>
 				<td>{{e.show_name}}</td>
-				<td>{{e.sales}}</td>
-				<td>{{e.refunds}}</td>
-				<td>{{e.net}}</td>
+				<td>{{e.sales | number}}</td>
+				<td>{{e.refunds | number}}</td>
+				<td>{{e.net | number}}</td>
 			</tr>
 			<tr>
 				<th colspan="2">Summa</th>
-				<th>{{report.sales}}</th>
-				<th>{{report.refunds}}</th>
-				<th>{{report.net}}</th>
+				<th>{{report.sales | number}}</th>
+				<th>{{report.refunds | number}}</th>
+				<th>{{report.net | number}}</th>
 			</tr>
 		</tbody>
 	</table>
