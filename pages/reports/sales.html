@@ -1,0 +1,29 @@
+<div class="container" ng-controller="SalesCtrl">
+	<h1>Försäljning</h1>
+	<table class="table">
+		<thead>
+			<tr>
+				<th>Datum</th>
+				<th>Nöje</th>
+				<th>Försäljning</th>
+				<th>Återköp</th>
+				<th>Netto</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr ng-repeat="e in report.entries">
+				<td>{{e.day}}</td>
+				<td>{{e.show_name}}</td>
+				<td>{{e.sales}}</td>
+				<td>{{e.refunds}}</td>
+				<td>{{e.net}}</td>
+			</tr>
+			<tr>
+				<th colspan="2">Summa</th>
+				<th>{{report.sales}}</th>
+				<th>{{report.refunds}}</th>
+				<th>{{report.net}}</th>
+			</tr>
+		</tbody>
+	</table>
+</div>

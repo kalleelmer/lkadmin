@@ -34,6 +34,10 @@ module.config([ "$routeProvider", function($routeProvider) {
 		templateUrl : "/pages/users/user.html",
 		controller : "UserCtrl"
 	});
+	$routeProvider.when("/reports", {
+		templateUrl : "/pages/reports/sales.html",
+		controller : "SalesCtrl"
+	});
 	$routeProvider.otherwise({
 		redirectTo : "/"
 	});
