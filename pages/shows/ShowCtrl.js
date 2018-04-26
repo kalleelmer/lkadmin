@@ -8,30 +8,29 @@ var ShowCtrl = function($filter, $scope, $http, User, $routeParams, Core) {
 	};
 
 	$scope.id = $routeParams.id;
-
-	$scope.addPerf = function(date) {
-		var time = prompt("Ange klockslag (HH:mm)");
-		if (!time) {
-			return;
+	
+	var setDate = function(perf) {
+		if (perf.title) {
+			perf.date = null;
+		} else {
+			perf.date = new Date(perf.start).toISOString().substring(0, 10);
 		}
-
-		var newPerformance = {
-			start : date + " " + time
-		};
-
-		Core
-			.post("/admin/shows/" + $scope.id + "/performances", newPerformance)
-			.then(function(response) {
-				$scope.show.dates[date].push(response.data);
-			}, function(response) {
-				alert("Kunde inte lägga till föreställningen: ", response.status);
-			});
 	}
 
-	$scope.addDate = function() {
-		$scope.show.dates[$scope.newDate] = [];
+	$scope.addPerf = function(date) {
+		var newPerformance = {
+			start : $scope.newDate
+		};
+
+		var req = Core.post("/admin/shows/" + $scope.id + "/performances", newPerformance);
+		req.then(function(response) {
+			setDate(response.data);
+			$scope.performances.push(response.data);
+		}, function(response) {
+			alert("Kunde inte lägga till föreställningen: ", response.status);
+		});
 		$scope.newDate = "";
-	};
+	}
 
 	Core.get("/admin/shows/" + $scope.id).then(function(response) {
 		$scope.show = response.data;
@@ -43,14 +42,10 @@ var ShowCtrl = function($filter, $scope, $http, User, $routeParams, Core) {
 	ctrl.loadShowData = function() {
 		Core.get("/admin/shows/" + $scope.id + "/performances").then(
 			function(response) {
-				var dates = {};
+				$scope.performances = response.data;
 				for ( var i in response.data) { // Group by date
-					var show = response.data[i];
-					var key = new Date(show.start).toISOString().substring(0, 10);
-					dates[key] = dates[key] ? dates[key] : [];
-					dates[key].push(show);
+					setDate(response.data[i]);
 				}
-				$scope.show.dates = dates;
 			}, function(response) {
 				alert("Kunde inte hämta föreställningarna: " + response.status);
 			});
@@ -91,9 +86,6 @@ var ShowCtrl = function($filter, $scope, $http, User, $routeParams, Core) {
 				var price = response.data[i];
 				category.prices[price.rate_id] = price;
 			}
-
-			console.log($scope.show);
-
 		}, function(response) {
 			alert("Kunde inte hämta priserna: " + response.status);
 		});

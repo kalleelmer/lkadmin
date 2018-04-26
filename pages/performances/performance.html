@@ -1,6 +1,12 @@
 <div class="container">
-	<h1>{{performance.show.name}} {{performance.start | date :
-		'yyyy-MM-dd HH:mm'}}</h1>
+	<h1>
+		{{performance.show.name}} <span ng-show="performance.title === null">{{performance.start
+			| date : 'yyyy-MM-dd HH:mm'}}</span> <span
+			ng-show="performance.title !== null">{{performance.title}}</span>
+	</h1>
+	<p>
+		<i>{{performance.note}}</i>
+	</p>
 	<p ng-show="performance.surcharge != 0">Prispålägg:
 		{{performance.surcharge}} kr</p>
 	<h2>Siffror</h2>

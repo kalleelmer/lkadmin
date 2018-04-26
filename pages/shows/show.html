@@ -35,17 +35,18 @@
 		<div class="col-md-4">
 			<h2>Föreställningar</h2>
 			<div class="list-group"
-				ng-repeat="(date, performances) in show.dates">
+				ng-repeat="(date, perfs) in performances | orderBy:'date' | groupBy:'date'">
 				<div class="list-group-item active">
-					<i class="fa fa-plus fa-lg clickable right"
-						ng-click="addPerf(date)"></i> {{date | date : 'EEEE d MMMM yyyy'}}
+					<span ng-if="date && date != 'null'">{{date | date : 'EEEE d
+						MMMM yyyy'}}</span>&nbsp;
 				</div>
-				<a href="#/performances/{{performance.id}}" class="list-group-item"
-					ng-repeat="performance in performances"><span
-					style="float: right;" ng-show="performance.surcharge != 0">{{performance.surcharge}}
-						kr</span>{{performance.start | date : 'HH:mm'}}</a>
+				<a href="#/performances/{{perf.id}}" class="list-group-item"
+					ng-repeat="perf in perfs"><span style="float: right;"
+					ng-show="perf.surcharge != 0">{{perf.surcharge}} kr</span> <span
+					ng-show="perf.title === null">{{perf.start | date :
+						'HH:mm'}}</span> <span ng-show="perf.title !== null">{{perf.title}}</span></a>
 			</div>
-			<form ng-submit="addDate()" class="input-group">
+			<form ng-submit="addPerf()" class="input-group">
 				<input required type="text" ng-model="newDate" class="form-control"
 					placeholder="ÅÅÅÅ-MM-DD"> <span class="input-group-btn">
 					<input type="submit" class="btn btn-primary" type="button"
