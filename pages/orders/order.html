@@ -1,0 +1,39 @@
+<div class="container">
+	<form ng-submit="goToOrder()">
+		<input type="text" ng-model="newID" />
+	</form>
+</div>
+<div class="container" ng-show="order">
+	<h1>Bokning</h1>
+	<div class="row">
+		<div class="col-xs-3">Löpnummer</div>
+		<div class="col-xs-9">{{order.id}}</div>
+	</div>
+	<div class="row">
+		<div class="col-xs-3">Bokningskod</div>
+		<div class="col-xs-9">{{order.identifier}}</div>
+	</div>
+	<h2>Transaktioner</h2>
+	<table class="table">
+		<thead>
+			<tr>
+				<td>ID</td>
+				<td>Biljett</td>
+				<td>Tid</td>
+				<td>Händelse</td>
+				<td>Användare</td>
+				<td>Profil</td>
+			</tr>
+		</thead>
+		<tbody>
+			<tr ng-repeat="tran in transactions">
+				<td>{{tran.transaction_id}}</td>
+				<td>{{tran.ticket_id}}</td>
+				<td>{{tran.date | date:'yyyy-MM-dd HH:mm'}}</td>
+				<td>{{tran.activity}}</td>
+				<td>{{tran.user_id}}</td>
+				<td>{{tran.profile_id}}</td>
+			</tr>
+		</tbody>
+	</table>
+</div>

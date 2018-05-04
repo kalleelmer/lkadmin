@@ -38,6 +38,14 @@ module.config([ "$routeProvider", function($routeProvider) {
 		templateUrl : "/pages/reports/sales.html",
 		controller : "SalesCtrl"
 	});
+	$routeProvider.when("/orders", {
+		templateUrl : "/pages/orders/order.html",
+		controller : "OrderCtrl"
+	});
+	$routeProvider.when("/orders/:id", {
+		templateUrl : "/pages/orders/order.html",
+		controller : "OrderCtrl"
+	});
 	$routeProvider.otherwise({
 		redirectTo : "/"
 	});
