@@ -5,7 +5,9 @@
 			<tr>
 				<th>Datum</th>
 				<th>Nöje</th>
+				<th>Plats</th>
 				<th>Profil</th>
+				<th>Försäljningsställe</th>
 				<th>Försäljning</th>
 				<th>Återköp</th>
 				<th>Netto</th>
@@ -15,13 +17,15 @@
 			<tr ng-repeat="e in report.entries">
 				<td>{{e.day}}</td>
 				<td>{{e.show_name}}</td>
+				<td>{{e.category_name}}</td>
 				<td>{{e.profile_name}}</td>
+				<td>{{e.location_name}}</td>
 				<td>{{e.sales | number}}</td>
 				<td>{{e.refunds | number}}</td>
 				<td>{{e.net | number}}</td>
 			</tr>
 			<tr>
-				<th colspan="3">Summa</th>
+				<th colspan="5">Summa</th>
 				<th>{{report.sales | number}}</th>
 				<th>{{report.refunds | number}}</th>
 				<th>{{report.net | number}}</th>
