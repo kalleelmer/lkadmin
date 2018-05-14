@@ -8,16 +8,25 @@ var OrderCtrl = function($scope, Core, $routeParams) {
 	}
 
 	ctrl.loadOrder = function() {
-		if (!($routeParams.id > 0)) {
-			return;
+		var path = null;
+
+		console.log($routeParams.id);
+		console.log(parseInt($routeParams.id, 10));
+		if ($routeParams.id == parseInt($routeParams.id, 10)) {
+			path = "/admin/orders/" + $routeParams.id;
+		} else if ($routeParams.id.length > 0) {
+			path = "/admin/orders/identifier/" + $routeParams.id;
 		}
-		Core.get("/admin/orders/" + $routeParams.id).then(function(response) {
-			$scope.order = response.data;
-			ctrl.loadTickets();
-			ctrl.loadTransactions();
-		}, function(response) {
-			alert("Kunde inte hämta bokningen: " + response.status);
-		});
+
+		if (path) {
+			Core.get(path).then(function(response) {
+				$scope.order = response.data;
+				ctrl.loadTickets();
+				ctrl.loadTransactions();
+			}, function(response) {
+				alert("Kunde inte hämta bokningen: " + response.status);
+			});
+		}
 	}
 
 	ctrl.loadTickets = function() {
