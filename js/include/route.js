@@ -35,8 +35,15 @@ module.config([ "$routeProvider", function($routeProvider) {
 		controller : "UserCtrl"
 	});
 	$routeProvider.when("/reports", {
+		templateUrl : "/pages/reports/reports.html",
+	});
+	$routeProvider.when("/reports/sales", {
 		templateUrl : "/pages/reports/sales.html",
 		controller : "SalesCtrl"
+	});
+	$routeProvider.when("/reports/shows", {
+		templateUrl : "/pages/reports/shows.html",
+		controller : "ShowsReportCtrl"
 	});
 	$routeProvider.when("/orders", {
 		templateUrl : "/pages/orders/order.html",

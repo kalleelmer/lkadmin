@@ -1,0 +1,24 @@
+<div class="container">
+	<div ng-include="'/pages/reports/menu.html?v=BUILD_NUMBER'"></div>
+	<h1>Nöjen</h1>
+	<table class="table">
+		<thead>
+			<tr>
+				<td>Nöje</td>
+				<td>Tid</td>
+				<td>Plats</td>
+				<td>Totalt</td>
+				<td>Lediga</td>
+			</tr>
+		</thead>
+		<tbody>
+			<tr ng-repeat="entry in report.entries">
+				<td>{{entry.show_name}}</td>
+				<td>{{entry.performance_start}}</td>
+				<td>{{entry.category_name}}</td>
+				<td>{{entry.total}}</td>
+				<td>{{entry.available}}</td>
+			</tr>
+		</tbody>
+	</table>
+</div>
