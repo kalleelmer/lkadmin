@@ -139,6 +139,25 @@ var PerformanceCtrl = function($filter, $scope, $http, User, $routeParams, Core)
 				profile.working = false;
 			});
 	}
+	
+	$scope.addSeat = function(category) {
+		if(!category) {
+			return;
+		}
+		$scope.working = true;
+		console.log("Adding seat with category " + category.name);
+		var seat = {
+			performance_id: $scope.performance.id,
+			category_id: category.id
+		};
+		Core.post("/admin/seats", seat).then(function(response) {
+			$scope.stats[0][seat.category_id].total++;
+			$scope.stats[0][seat.category_id].available++;
+			$scope.working = false;
+		}, function(failure) {
+			alert("Platsen kunde inte läggas till: " + failure.status);
+		});
+	}
 };
 
 module.controller("PerformanceCtrl", PerformanceCtrl);
