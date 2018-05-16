@@ -17,7 +17,7 @@
 		<tbody>
 			<tr ng-repeat="entry in report.entries">
 				<td>{{entry.show_name}}</td>
-				<td>{{entry.performance_start}}</td>
+				<td>{{entry.performance_start | date : 'yyyy-MM-dd HH:mm'}}</td>
 				<td>{{entry.category_name}}</td>
 				<td>{{entry.total}}</td>
 				<td>{{entry.available}}</td>
