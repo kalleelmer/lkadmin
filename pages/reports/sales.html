@@ -1,6 +1,27 @@
 <div class="container" ng-controller="SalesCtrl">
 	<div ng-include="'/pages/reports/menu.html?v=BUILD_NUMBER'"></div>
 	<h1>Försäljning</h1>
+
+	Tider <select class="custom-select mb-2 mr-sm-2 mb-sm-0" id="inlineFormCustomSelect" ng-model="selectedTime" ng-init = "selectedTime = 'all'">
+		<option selected value="all">Visa alla</option>
+		<option ng-repeat = "(key, val) in report.entries | groupBy: 'day'" value = "{{key}}">{{key}}</option>
+	</select>
+
+	Show <select class="custom-select mb-2 mr-sm-2 mb-sm-0" id="inlineFormCustomSelect" ng-model="selectedShow" ng-init = "selectedShow = 'all'">
+		<option selected value="all">Visa alla</option>
+		<option ng-repeat = "(key, val) in report.entries | groupBy: 'show_name'" value = "{{key}}">{{key}}</option>
+	</select>
+
+	Profil <select class="custom-select mb-2 mr-sm-2 mb-sm-0" id="inlineFormCustomSelect" ng-model="selectedProfile" ng-init = "selectedProfile = 'all'">
+		<option selected value="all">Visa alla</option>
+		<option ng-repeat = "(key, val) in report.entries | groupBy: 'profile_name'" value = "{{key}}">{{key}}</option>
+	</select>
+
+	Plats <select class="custom-select mb-2 mr-sm-2 mb-sm-0" id="inlineFormCustomSelect" ng-model="selectedLocation" ng-init = "selectedLocation = 'all'">
+		<option selected value="all">Visa alla</option>
+		<option ng-repeat = "(key, val) in report.entries | groupBy: 'location_name'" value = "{{key}}">{{key}}</option>
+	</select>
+
 	<table class="table">
 		<thead>
 			<tr>
@@ -15,7 +36,7 @@
 			</tr>
 		</thead>
 		<tbody>
-			<tr ng-repeat="e in report.entries">
+			<tr ng-repeat="e in report.entries" ng-show = "(selectedTime === 'all' || selectedTime === e.day) && (selectedShow === 'all' || selectedShow === e.show_name) && (selectedLocation === 'all' || selectedLocation === e.location_name) && (selectedProfile === 'all' || selectedProfile === e.profile_name)">
 				<td>{{e.day}}</td>
 				<td>{{e.show_name}}</td>
 				<td>{{e.category_name}}</td>
