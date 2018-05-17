@@ -10,9 +10,9 @@ var OrderCtrl = function($scope, Core, $routeParams) {
 	ctrl.loadOrder = function() {
 		var path = null;
 
-		console.log($routeParams.id);
-		console.log(parseInt($routeParams.id, 10));
-		if ($routeParams.id == parseInt($routeParams.id, 10)) {
+		if (!$routeParams.id) {
+			return;
+		} else if ($routeParams.id == parseInt($routeParams.id, 10)) {
 			path = "/admin/orders/" + $routeParams.id;
 		} else if ($routeParams.id.length > 0) {
 			path = "/admin/orders/identifier/" + $routeParams.id;
